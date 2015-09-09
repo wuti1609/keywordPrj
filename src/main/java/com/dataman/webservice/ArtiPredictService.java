@@ -79,7 +79,7 @@ public class ArtiPredictService {
                         SparkSubmit.main(arg0); 
 	*/
                //         String[] re = Knn.getRecomm(4);
-		        List<String> re = predictArticle.getArticle(msg.getArticleid(), msg.getAppid(), msg.getContent());
+		        List<String> re = predictArticle.getArticle( msg.getArticleid(), msg.getAppid(), msg.getContent(), Analyzer.analyzer);
 	                String[] rel = re.get(0).split(":");
 	                oum.setKeywords(rel[1]);
 	                String[] articleIds = rel[0].split(",");
