@@ -10,7 +10,7 @@ public class OutputMsg {
 	
 	private String keywords; 
 	
-	private List<ArticlID> related_arts;
+	private String related_arts;
 	
 	private String detail; //记录错误信息exp.
 	
@@ -46,11 +46,11 @@ public class OutputMsg {
 		this.keywords = keywords;
 	}
 
-	public List<ArticlID> getRelated_arts() {
+	public String getRelated_arts() {
 		return related_arts;
 	}
 
-	public void setRelated_arts(List<ArticlID> related_arts) {
+	public void setRelated_arts(String related_arts) {
 		this.related_arts = related_arts;
 	}
 }

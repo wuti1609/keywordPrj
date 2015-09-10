@@ -79,15 +79,20 @@ public class ArtiPredictService {
                         SparkSubmit.main(arg0); 
 	*/
                //         String[] re = Knn.getRecomm(4);
-		        List<String> re = predictArticle.getArticle( msg.getArticleid(), msg.getAppid(), msg.getContent(), Analyzer.analyzer);
+		        List<String> re = predictArticle.getArticle(Analyzer.sc, Analyzer.model, msg.getArticleid(), msg.getAppid(), msg.getContent(), Analyzer.analyzer);
 	                String[] rel = re.get(0).split(":");
 	                oum.setKeywords(rel[1]);
 	                String[] articleIds = rel[0].split(",");
-			List<ArticlID> related_arts = new ArrayList<ArticlID>();
+                        oum.setRelated_arts(rel[0]);
+/*			List<ArticlID> related_arts = new ArrayList<ArticlID>();
+                        System.out.println("articleId: " + msg.getArticleid());
 			for(int i = 0; i < articleIds.length; i ++) {
-			    related_arts.add(new ArticlID(Integer.parseInt(articleIds[i]), msg.getArticleid()));
+                            System.out.println(articleIds[i]);
+			    related_arts.add(new ArticlID(Integer.parseInt(articleIds[i]), msg.getAppid()));
 			}
+                        System.out.println(related_arts.size());
 			oum.setRelated_arts(related_arts);
+*/
 		} catch (SQLException e) {
 			oum.setDetail("发生异常：" + e.getMessage());
 			e.printStackTrace();
