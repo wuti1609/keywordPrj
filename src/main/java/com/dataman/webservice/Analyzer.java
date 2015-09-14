@@ -2,6 +2,7 @@ package com.dataman.webservice;
 
 
 import org.apache.spark.SparkContext;
+import org.apache.spark.sql.SQLContext;
 import org.apache.spark.mllib.clustering.LocalLDAModel;
 
 import com.dataman.nlp.util.StanfordSegment;
@@ -13,10 +14,12 @@ public class Analyzer {
     public static CRFClassifier<CoreLabel> analyzer;
     public static LocalLDAModel model;
     public static SparkContext sc;
+    public static SQLContext sqlContext;
     
     static {
         Analyzer.analyzer = StanfordSegment.wordSegment("http://10.3.12.2:8666/analyzer");
         Analyzer.sc = new SparkContext();
-        Analyzer.model = LocalLDAModel.load(Analyzer.sc, "hdfs://10.3.12.9:9000/test/ModelMatrix/Matrix1");
+        Analyzer.sqlContext = new SQLContext(sc);
+        Analyzer.model = LocalLDAModel.load(Analyzer.sc, "hdfs://10.3.12.9:9000/model/one");
     }
 }
